@@ -1,0 +1,6 @@
+@SmallProjectSandeepGupta_HostAddress = http://localhost:5294
+
+GET {{SmallProjectSandeepGupta_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

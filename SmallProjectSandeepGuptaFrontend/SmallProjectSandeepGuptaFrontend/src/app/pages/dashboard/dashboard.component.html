@@ -1,0 +1,100 @@
+<div class="p-6 bg-gray-900 min-h-screen">
+  <div class="bg-gray-800 p-6 rounded shadow-md mb-6">
+    <div class="dash">
+      <h2 class="text-xl font-bold text-gray-200">Your Posts</h2>
+      <button (click)="openModal()" id="newpost" class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">
+        Create New Post
+      </button>
+    </div>
+
+    <!-- Modal for creating a new post -->
+    <div *ngIf="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div class="bg-gray-800 p-6 rounded shadow-lg w-96">
+        <h2 class="text-lg font-bold text-gray-200">Add New Post</h2>
+        <form (submit)="onSubmit($event)" class="mt-4">
+          <div class="flex justify-between my-2">
+            <label for="title" class="text-gray-300">Title:</label>
+            <input
+              class="border-2 border-solid border-gray-600 bg-gray-700 text-gray-200 p-1 rounded"
+              type="text"
+              id="title"
+              name="title"
+              required
+            />
+          </div>
+          <div class="flex justify-between my-2">
+            <label for="description" class="text-gray-300">Description:</label>
+            <input
+              class="border-2 border-solid border-gray-600 bg-gray-700 text-gray-200 p-1 rounded ml-2"
+              type="text"
+              id="description"
+              name="description"
+              required
+            />
+          </div>
+          <div class="flex justify-end">
+            <button type="submit" class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Display all posts -->
+    <div *ngFor="let post of posts" class="bg-gray-700 p-4 rounded mt-4">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-100">{{ post.title }}</h3>
+        <p class="text-gray-300">{{ post.description }}</p>
+        <p class="text-gray-300">{{ post.postID }}</p>
+        <div class="outer">
+          <button
+            (click)="openModal2(post.postID)"
+            class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 mt-2"
+          >
+            Edit
+          </button>
+          <button
+            (click)="delete(post.postID)"
+            class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 mt-2"
+          >
+            Delete
+          </button>
+
+          <!-- Modal for updating a post -->
+          <div *ngIf="modal2 && id === post.postID" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div class="bg-gray-800 p-6 rounded shadow-lg w-96">
+              <h2 class="text-lg font-bold text-gray-200">Update Post</h2>
+              <p class="text-gray-300">Post ID: {{ post.postID }}</p>
+              <form (submit)="onUpdate($event, post.postID)" class="mt-4">
+                <div class="flex justify-between my-2">
+                  <label for="title" class="text-gray-300">Title:</label>
+                  <input
+                    class="border-2 border-solid border-gray-600 bg-gray-700 text-gray-200 p-1 rounded"
+                    type="text"
+                    id="title"
+                    name="title"
+                    [value]="post.title"
+                    required
+                  />
+                </div>
+                <div class="flex justify-between my-2">
+                  <label for="description" class="text-gray-300">Description:</label>
+                  <input
+                    class="border-2 border-solid border-gray-600 bg-gray-700 text-gray-200 p-1 rounded ml-2"
+                    type="text"
+                    id="description"
+                    name="description"
+                    [value]="post.description"
+                    required
+                  />
+                </div>
+                <div class="flex justify-end">
+                  <button type="submit" class="bg-cyan-500 text-white px-4 py-2 rounded hover:bg-cyan-600">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

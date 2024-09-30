@@ -1,0 +1,44 @@
+.outer{
+    display:flex;
+    gap : 30px;
+    
+}
+button{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#newpost{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    padding : 20px;
+    background-color: rgba(85, 120, 177, 0.473);
+    color: rgb(220, 236, 236);
+    font-weight: 300;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+#newpost:hover{
+    background-color: rgb(85, 120, 177);
+    cursor: pointer;
+}
+
+.dash{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+.modal{
+    
+    top: 20%;
+    left: 30%;
+    background-color: white;
+    padding: 3%;
+    text-align: start;
+    border: 1px solid black;
+}
+
